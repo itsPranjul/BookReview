@@ -117,34 +117,28 @@ Authorization: Bearer <your_token>
 ### 📄 User
 
 ```js
-{
-  name: String,
-  email: { type: String, unique: true },
-  password: String
-}
+username: {type: String,required: true,unique: true},
+email: {type: String,required: true,unique: true,},
+password: {type: String,required: true,}
 ```
 
 ### 📘 Book
 
 ```js
-{
-  title: String,
-  author: String,
-  description: String,
-  category: String,
-  image: String
-}
+title: {type: String,required: true},
+author: {type: String,required: true},
+genre: {type: String},
+createdBy: { type: mongoose.Schema.Types.ObjectId,
+ref: 'User'},}
 ```
 
 ### ✍️ Review
 
 ```js
-{
-  book: { type: ObjectId, ref: 'Book', required: true },
-  user: { type: ObjectId, ref: 'User', required: true },
-  rating: { type: Number, min: 1, max: 5, required: true },
-  comment: String
-}
+book: {type: mongoose.Schema.Types.ObjectId, ref: 'Book', required: true},
+user: {type: mongoose.Schema.Types.ObjectId,ref: 'User',required: true},
+rating: {type: Number,required: true,min: 1,max: 5},
+comment: {type: String},
 ```
 
 > ⚠️ Reviews have a compound index on `{ book, user }` to ensure one review per user per book.
