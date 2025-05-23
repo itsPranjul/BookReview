@@ -33,7 +33,7 @@ BookReview/
 ├── routes/            # API route definitions
 ├── .env               # Environment variables
 ├── .gitignore
-├── server.js          # Entry point
+├── index.js          # Entry point
 └── package.json
 ```
 
