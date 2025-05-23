@@ -112,6 +112,44 @@ Authorization: Bearer <your_token>
 ```
 
 ---
+## 🧩 Brief Schema Design
+
+### 📄 User
+
+```js
+{
+  name: String,
+  email: { type: String, unique: true },
+  password: String
+}
+```
+
+### 📘 Book
+
+```js
+{
+  title: String,
+  author: String,
+  description: String,
+  category: String,
+  image: String
+}
+```
+
+### ✍️ Review
+
+```js
+{
+  book: { type: ObjectId, ref: 'Book', required: true },
+  user: { type: ObjectId, ref: 'User', required: true },
+  rating: { type: Number, min: 1, max: 5, required: true },
+  comment: String
+}
+```
+
+> ⚠️ Reviews have a compound index on `{ book, user }` to ensure one review per user per book.
+
+---
 
 ## 👤 Author
 
